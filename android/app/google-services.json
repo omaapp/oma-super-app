@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "220470942153",
+    "project_id": "omaapp-bf53e",
+    "storage_bucket": "omaapp-bf53e.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:220470942153:android:4b7a6bbd0fd14f21aeb018",
+        "android_client_info": {
+          "package_name": "iq.oma.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdDMpNhPmiI5p7BTTQJAWcQ6USgfoggUk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

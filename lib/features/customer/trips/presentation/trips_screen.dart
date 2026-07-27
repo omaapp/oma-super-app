@@ -1,0 +1,20 @@
+import 'package:flutter/material.dart';
+
+class TripsScreen extends StatelessWidget {
+  const TripsScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("رحلاتي"),
+      ),
+      body: const Center(
+        child: Text(
+          "لا توجد رحلات حالياً",
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
+    );
+  }
+}
