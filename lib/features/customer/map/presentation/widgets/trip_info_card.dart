@@ -308,7 +308,7 @@ class TripInfoCard extends StatelessWidget {
   ),
 
   const SizedBox(height: 24),
-]
+],
 SizedBox(
   width: double.infinity,
   height: 58,

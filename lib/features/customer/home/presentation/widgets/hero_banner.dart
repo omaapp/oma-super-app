@@ -59,7 +59,7 @@ class HeroBanner extends StatelessWidget {
 
                         Text(
                           "اطلب Taxi أو Tuk Tuk\nبضغطة واحدة",
-                          style: AppTextStyles.title.copyWith(
+                          style: AppTextStyles.titleMedium.copyWith(
                             color: Colors.white,
                             height: 1.35,
                           ),
@@ -134,7 +134,7 @@ class HeroBanner extends StatelessWidget {
                       Expanded(
                         child: Text(
                           "إلى أين تريد الذهاب؟",
-                          style: AppTextStyles.body.copyWith(
+                          style: AppTextStyles.bodyMedium.copyWith(
                             fontWeight:
                                 FontWeight.bold,
                           ),
@@ -244,7 +244,7 @@ class _MiniCard extends StatelessWidget {
 
           Text(
             title,
-            style: AppTextStyles.body.copyWith(
+            style: AppTextStyles.bodyMedium.copyWith(
               color: Colors.white,
               fontWeight: FontWeight.bold,
             ),

@@ -11,7 +11,7 @@ class RequestTripButton extends StatelessWidget {
 
   const RequestTripButton({
     super.key,
-    required this onPressed,
+    required this.onPressed,
     this.loading = false,
     this.driverFound = false,
     this.enabled = true,

@@ -49,7 +49,7 @@ class WelcomeCard extends StatelessWidget {
 
                     Text(
                       "إلى أين تريد الذهاب اليوم؟",
-                      style: AppTextStyles.heading.copyWith(
+                      style: AppTextStyles.titleLarge.copyWith(
                         color: Colors.white,
                       ),
                     ),
@@ -58,7 +58,7 @@ class WelcomeCard extends StatelessWidget {
 
                     Text(
                       "اطلب سيارة أو تكتك خلال ثوانٍ واستمتع برحلة آمنة وسريعة داخل العراق.",
-                      style: AppTextStyles.body.copyWith(
+                      style: AppTextStyles.bodyMedium.copyWith(
                         color: Colors.white.withValues(alpha: .90),
                         height: 1.6,
                       ),

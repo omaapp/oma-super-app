@@ -56,7 +56,7 @@ class OmaTextField extends StatelessWidget {
       onTap: onTap,
       readOnly: readOnly,
       cursorColor: AppColors.primary,
-      style: AppTextStyles.body.copyWith(
+      style: AppTextStyles.bodyMedium.copyWith(
         color: dark ? Colors.white : Colors.black87,
       ),
       decoration: InputDecoration(

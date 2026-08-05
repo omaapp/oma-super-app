@@ -68,7 +68,7 @@ class PromoCard extends StatelessWidget {
                   children: [
                     Text(
                       "العروض الحصرية",
-                      style: AppTextStyles.heading,
+                      style: AppTextStyles.titleLarge,
                     ),
 
                     const SizedBox(

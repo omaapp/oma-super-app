@@ -107,7 +107,7 @@ class _QuickAction extends StatelessWidget {
             Text(
               title,
               textAlign: TextAlign.center,
-              style: AppTextStyles.body.copyWith(
+              style: AppTextStyles.bodyMedium.copyWith(
                 fontWeight: FontWeight.bold,
                 color: dark
                     ? Colors.white

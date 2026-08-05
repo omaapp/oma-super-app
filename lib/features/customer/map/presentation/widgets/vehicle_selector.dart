@@ -161,7 +161,7 @@ class _VehicleTile extends StatelessWidget {
 
     Text(
       title,
-      style: AppTextStyles.title.copyWith(
+      style: AppTextStyles.titleMedium.copyWith(
         color: selected
             ? Colors.white
             : theme.colorScheme.onSurface,
@@ -198,7 +198,7 @@ class _VehicleTile extends StatelessWidget {
         Expanded(
           child: Text(
             eta,
-            style: AppTextStyles.body.copyWith(
+            style: AppTextStyles.bodyMedium.copyWith(
               color: selected
                   ? Colors.white
                   : theme.colorScheme.onSurface,
@@ -226,7 +226,7 @@ class _VehicleTile extends StatelessWidget {
         Expanded(
           child: Text(
             price,
-            style: AppTextStyles.body.copyWith(
+            style: AppTextStyles.bodyMedium.copyWith(
               color: selected
                   ? Colors.white
                   : Colors.green,

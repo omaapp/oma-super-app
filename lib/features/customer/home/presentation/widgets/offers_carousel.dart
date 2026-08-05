@@ -172,7 +172,7 @@ class _OffersCarouselState
 
                                   style:
                                       AppTextStyles
-                                          .title
+                                          .titleMedium
                                           .copyWith(
                                     color:
                                         Colors.white,
@@ -188,7 +188,7 @@ class _OffersCarouselState
 
                                   style:
                                       AppTextStyles
-                                          .body
+                                          .bodyMedium
                                           .copyWith(
                                     color:
                                         Colors.white,

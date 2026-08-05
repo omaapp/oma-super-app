@@ -65,7 +65,7 @@ class HomeHeader extends StatelessWidget {
 
                   Text(
                     "مرحباً بك",
-                    style: AppTextStyles.heading,
+                    style: AppTextStyles.titleLarge,
                   ),
                 ],
               ),
@@ -143,7 +143,7 @@ class HomeHeader extends StatelessWidget {
                     Text(
                       "الرفاعي • ذي قار",
                       style:
-                          AppTextStyles.body.copyWith(
+                          AppTextStyles.bodyMedium.copyWith(
                         fontWeight:
                             FontWeight.bold,
                       ),
@@ -156,7 +156,7 @@ class HomeHeader extends StatelessWidget {
                 onPressed: () {},
                 child: Text(
                   "تغيير",
-                  style: AppTextStyles.body.copyWith(
+                  style: AppTextStyles.bodyMedium.copyWith(
                     color: AppColors.primary,
                     fontWeight: FontWeight.bold,
                   ),

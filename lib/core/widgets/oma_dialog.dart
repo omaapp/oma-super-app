@@ -34,7 +34,7 @@ class OmaDialog {
             children: [
               Text(
                 title,
-                style: AppTextStyles.title,
+                style: AppTextStyles.titleMedium,
                 textAlign: TextAlign.center,
               ),
 
@@ -42,7 +42,7 @@ class OmaDialog {
 
               Text(
                 message,
-                style: AppTextStyles.body,
+                style: AppTextStyles.bodyMedium,
                 textAlign: TextAlign.center,
               ),
 
@@ -82,7 +82,7 @@ class OmaDialog {
                     ),
                     child: Text(
                       cancelText,
-                      style: AppTextStyles.body.copyWith(
+                      style: AppTextStyles.bodyMedium.copyWith(
                         color: AppColors.primary,
                         fontWeight: FontWeight.bold,
                       ),

@@ -62,7 +62,7 @@ class EmptyState extends StatelessWidget {
               Text(
                 title,
                 textAlign: TextAlign.center,
-                style: AppTextStyles.heading.copyWith(
+                style: AppTextStyles.titleLarge.copyWith(
                   color: isDark
                       ? Colors.white
                       : AppColors.textPrimary,

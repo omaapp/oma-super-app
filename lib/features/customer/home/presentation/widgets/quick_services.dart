@@ -32,7 +32,7 @@ class QuickServices extends StatelessWidget {
             children: [
               Text(
                 "الخدمات",
-                style: AppTextStyles.heading,
+                style: AppTextStyles.titleLarge,
               ),
 
               const Spacer(),
@@ -169,7 +169,7 @@ class QuickServices extends StatelessWidget {
 
           Text(
             "قريباً",
-            style: AppTextStyles.heading,
+            style: AppTextStyles.titleLarge,
           ),
 
           const SizedBox(

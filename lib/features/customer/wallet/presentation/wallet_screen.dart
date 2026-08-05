@@ -16,7 +16,7 @@ class WalletScreen extends StatelessWidget {
       title: 'المحفظة',
       body: ListView(
         padding: const EdgeInsets.all(AppSpacing.md),
-        children: const [
+        children: [
           _BalanceCard(),
           SizedBox(height: AppSpacing.lg),
           Row(

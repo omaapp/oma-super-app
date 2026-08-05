@@ -50,7 +50,7 @@ class AppAppBar extends StatelessWidget
 
       title: Text(
         title,
-        style: AppTextStyles.heading,
+        style: AppTextStyles.titleLarge,
       ),
     );
   }
