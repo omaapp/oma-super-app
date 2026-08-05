@@ -55,6 +55,14 @@ class LoginLogo extends StatelessWidget {
             fontWeight: FontWeight.w500,
           ),
         ),
+        const SizedBox(height: 4),
+        Text(
+          style: GoogleFonts.cairo(
+            color: Colors.white70,
+            fontSize: 14,
+            fontWeight: FontWeight.w600,
+          ),
+        ),
       ],
     );
   }

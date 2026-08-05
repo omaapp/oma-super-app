@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-import '../../../../core/services/live_trip_location_service.dart';
+import '../../../core/services/live_trip_location_service.dart';
 import '../controllers/driver_trip_map_controller.dart';
 import '../data/driver_service.dart';
 

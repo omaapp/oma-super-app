@@ -2,8 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../core/models/trip_model.dart';
-import '../../../../core/services/driver_location_service.dart';
+import '../../../core/models/trip_model.dart';
+import '../../../core/services/driver_location_service.dart';
 
 import '../data/driver_service.dart';
 import '../data/nearby_trip_service.dart';

@@ -1,45 +1,43 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/widgets/app_scaffold.dart';
+import '../../../../core/widgets/oma_card.dart';
+
 class TripsScreen extends StatelessWidget {
   const TripsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text("رحلاتي"),
-        centerTitle: true,
-      ),
+    return AppScaffold(
+      title: 'رحلاتي',
       body: ListView(
-        padding: const EdgeInsets.all(18),
+        padding: const EdgeInsets.all(AppSpacing.md),
         children: const [
-
           _TripCard(
-            from: "الرفاعي",
-            to: "الجامعة",
-            price: "2500 د.ع",
-            status: "مكتملة",
-            color: Colors.green,
+            from: 'الرفاعي',
+            to: 'الجامعة',
+            price: '2,500 د.ع',
+            status: 'مكتملة',
+            color: AppColors.success,
           ),
-
-          SizedBox(height: 16),
-
+          SizedBox(height: AppSpacing.md),
           _TripCard(
-            from: "السوق",
-            to: "المستشفى",
-            price: "1500 د.ع",
-            status: "ملغاة",
-            color: Colors.red,
+            from: 'السوق',
+            to: 'المستشفى',
+            price: '1,500 د.ع',
+            status: 'ملغاة',
+            color: AppColors.error,
           ),
-
-          SizedBox(height: 16),
-
+          SizedBox(height: AppSpacing.md),
           _TripCard(
-            from: "المنزل",
-            to: "العمل",
-            price: "2000 د.ع",
-            status: "قيد التنفيذ",
-            color: Colors.orange,
+            from: 'المنزل',
+            to: 'العمل',
+            price: '2,000 د.ع',
+            status: 'قيد التنفيذ',
+            color: AppColors.warning,
           ),
         ],
       ),
@@ -48,7 +46,6 @@ class TripsScreen extends StatelessWidget {
 }
 
 class _TripCard extends StatelessWidget {
-
   final String from;
   final String to;
   final String price;
@@ -65,89 +62,32 @@ class _TripCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return Container(
-
-      padding: const EdgeInsets.all(18),
-
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(22),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x11000000),
-            blurRadius: 12,
-            offset: Offset(0,6),
-          ),
-        ],
-      ),
-
+    return OmaCard(
       child: Column(
-
-        crossAxisAlignment:
-            CrossAxisAlignment.start,
-
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
           Row(
-
             children: [
-
               CircleAvatar(
-                backgroundColor:
-                    color.withOpacity(.12),
-                child: Icon(
-                  Icons.local_taxi,
-                  color: color,
-                ),
+                backgroundColor: color.withValues(alpha: .12),
+                child: Icon(Icons.local_taxi_outlined, color: color),
               ),
-
-              const SizedBox(width: 12),
-
-              Expanded(
-
-                child: Text(
-                  "$from  →  $to",
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 17,
-                  ),
-                ),
-              ),
-
-              Container(
-
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 12,
-                  vertical: 6,
-                ),
-
+              const SizedBox(width: AppSpacing.sm),
+              Expanded(child: Text('$from ← $to', style: AppTextStyles.titleSmall)),
+              DecoratedBox(
                 decoration: BoxDecoration(
-                  color: color.withOpacity(.12),
-                  borderRadius:
-                      BorderRadius.circular(20),
+                  color: color.withValues(alpha: .12),
+                  borderRadius: BorderRadius.circular(99),
                 ),
-
-                child: Text(
-                  status,
-                  style: TextStyle(
-                    color: color,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                  child: Text(status, style: AppTextStyles.caption.copyWith(color: color)),
                 ),
               ),
             ],
           ),
-
-          const SizedBox(height: 18),
-
-          Text(
-            price,
-            style: const TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          const SizedBox(height: AppSpacing.md),
+          Text(price, style: AppTextStyles.price),
         ],
       ),
     );

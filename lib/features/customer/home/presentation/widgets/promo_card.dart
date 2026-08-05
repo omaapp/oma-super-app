@@ -8,7 +8,7 @@ import '../../../../../core/theme/app_shadows.dart';
 import '../../../../../core/theme/app_spacing.dart';
 import '../../../../../core/theme/app_text_styles.dart';
 
-import '../../../../../core/widgets/glass_card.dart';
+import 'glass_card.dart';
 
 class PromoCard extends StatelessWidget {
   const PromoCard({super.key});

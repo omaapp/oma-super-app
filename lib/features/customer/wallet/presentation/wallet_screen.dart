@@ -1,134 +1,70 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/theme/app_colors.dart';
+import '../../../../core/theme/app_gradients.dart';
+import '../../../../core/theme/app_spacing.dart';
+import '../../../../core/theme/app_text_styles.dart';
+import '../../../../core/widgets/app_scaffold.dart';
+import '../../../../core/widgets/oma_card.dart';
+
 class WalletScreen extends StatelessWidget {
   const WalletScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-
-    return Scaffold(
-
-      appBar: AppBar(
-        title: const Text("المحفظة"),
-        centerTitle: true,
-      ),
-
+    return AppScaffold(
+      title: 'المحفظة',
       body: ListView(
-
-        padding: const EdgeInsets.all(18),
-
-        children: [
-
-          Container(
-
-            padding: const EdgeInsets.all(24),
-
-            decoration: BoxDecoration(
-
-              gradient: const LinearGradient(
-
-                colors: [
-
-                  Color(0xff1565C0),
-
-                  Color(0xff0D47A1),
-
-                ],
-              ),
-
-              borderRadius:
-                  BorderRadius.circular(24),
-            ),
-
-            child: const Column(
-
-              crossAxisAlignment:
-                  CrossAxisAlignment.start,
-
-              children: [
-
-                Text(
-                  "الرصيد الحالي",
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 16,
-                  ),
-                ),
-
-                SizedBox(height: 12),
-
-                Text(
-                  "15,000 د.ع",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 34,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          const SizedBox(height: 24),
-
+        padding: const EdgeInsets.all(AppSpacing.md),
+        children: const [
+          _BalanceCard(),
+          SizedBox(height: AppSpacing.lg),
           Row(
-
             children: [
-
+              Expanded(child: _WalletAction(icon: Icons.add, title: 'شحن')),
+              SizedBox(width: AppSpacing.md),
               Expanded(
-                child: _WalletButton(
-                  icon: Icons.add,
-                  title: "شحن",
-                  color: Colors.green,
-                ),
-              ),
-
-              const SizedBox(width: 16),
-
-              Expanded(
-                child: _WalletButton(
-                  icon: Icons.history,
-                  title: "السجل",
-                  color: Colors.orange,
-                ),
+                child: _WalletAction(icon: Icons.history, title: 'السجل'),
               ),
             ],
           ),
+          SizedBox(height: AppSpacing.xl),
+          Text('آخر العمليات', style: AppTextStyles.titleLarge),
+          SizedBox(height: AppSpacing.md),
+          _WalletItem(title: 'شحن رصيد', amount: '+10,000 د.ع', isCredit: true),
+          SizedBox(height: AppSpacing.sm),
+          _WalletItem(title: 'رحلة Taxi', amount: '-2,500 د.ع'),
+          SizedBox(height: AppSpacing.sm),
+          _WalletItem(title: 'رحلة Tuk Tuk', amount: '-1,500 د.ع'),
+        ],
+      ),
+    );
+  }
+}
 
-          const SizedBox(height: 30),
+class _BalanceCard extends StatelessWidget {
+  const _BalanceCard();
 
-          const Text(
-
-            "آخر العمليات",
-
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(AppSpacing.lg),
+      decoration: BoxDecoration(
+        gradient: AppGradients.primary,
+        borderRadius: BorderRadius.circular(24),
+      ),
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('الرصيد الحالي', style: TextStyle(color: Colors.white70)),
+          SizedBox(height: AppSpacing.sm),
+          Text(
+            '15,000 د.ع',
             style: TextStyle(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
+              color: Colors.white,
+              fontSize: 32,
+              fontWeight: FontWeight.w800,
             ),
-          ),
-
-          const SizedBox(height: 18),
-
-          const _WalletItem(
-            title: "شحن رصيد",
-            amount: "+10000 د.ع",
-            color: Colors.green,
-          ),
-
-          SizedBox(height: 14),
-
-          _WalletItem(
-            title: "رحلة Taxi",
-            amount: "-2500 د.ع",
-            color: Colors.red,
-          ),
-
-          SizedBox(height: 14),
-
-          _WalletItem(
-            title: "رحلة Tuk Tuk",
-            amount: "-1500 د.ع",
-            color: Colors.red,
           ),
         ],
       ),
@@ -136,152 +72,52 @@ class WalletScreen extends StatelessWidget {
   }
 }
 
-class _WalletButton extends StatelessWidget {
-
+class _WalletAction extends StatelessWidget {
   final IconData icon;
   final String title;
-  final Color color;
 
-  const _WalletButton({
-
-    required this.icon,
-
-    required this.title,
-
-    required this.color,
-  });
+  const _WalletAction({required this.icon, required this.title});
 
   @override
   Widget build(BuildContext context) {
-
-    return InkWell(
-
+    return OmaCard(
       onTap: () {},
-
-      borderRadius:
-          BorderRadius.circular(18),
-
-      child: Container(
-
-        padding: const EdgeInsets.all(18),
-
-        decoration: BoxDecoration(
-
-          color: color.withOpacity(.08),
-
-          borderRadius:
-              BorderRadius.circular(18),
-        ),
-
-        child: Column(
-
-          children: [
-
-            Icon(
-              icon,
-              color: color,
-              size: 34,
-            ),
-
-            const SizedBox(height: 12),
-
-            Text(
-              title,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
+      child: Column(
+        children: [
+          Icon(icon, color: AppColors.primary, size: 30),
+          const SizedBox(height: AppSpacing.sm),
+          Text(title, style: AppTextStyles.button),
+        ],
       ),
     );
   }
 }
 
 class _WalletItem extends StatelessWidget {
-
   final String title;
   final String amount;
-  final Color color;
+  final bool isCredit;
 
   const _WalletItem({
-
     required this.title,
-
     required this.amount,
-
-    required this.color,
+    this.isCredit = false,
   });
 
   @override
   Widget build(BuildContext context) {
-
-    return Container(
-
-      padding: const EdgeInsets.all(18),
-
-      decoration: BoxDecoration(
-
-        color: Colors.white,
-
-        borderRadius:
-            BorderRadius.circular(18),
-
-        boxShadow: const [
-
-          BoxShadow(
-
-            color: Color(0x11000000),
-
-            blurRadius: 10,
-
-            offset: Offset(0,4),
-          ),
-        ],
-      ),
-
+    final color = isCredit ? AppColors.success : AppColors.error;
+    return OmaCard(
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Row(
-
         children: [
-
           CircleAvatar(
-
-            backgroundColor:
-                color.withOpacity(.12),
-
-            child: Icon(
-
-              Icons.account_balance_wallet,
-
-              color: color,
-            ),
+            backgroundColor: color.withValues(alpha: .12),
+            child: Icon(Icons.account_balance_wallet_outlined, color: color),
           ),
-
-          const SizedBox(width: 14),
-
-          Expanded(
-
-            child: Text(
-
-              title,
-
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
-
-          Text(
-
-            amount,
-
-            style: TextStyle(
-
-              color: color,
-
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          const SizedBox(width: AppSpacing.md),
+          Expanded(child: Text(title, style: AppTextStyles.titleSmall)),
+          Text(amount, style: AppTextStyles.button.copyWith(color: color)),
         ],
       ),
     );

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import '../../../../core/theme/app_colors.dart';
-import '../../../../core/theme/app_text_styles.dart';
-import '../../../../core/widgets/oma_bottom_sheet.dart';
-import '../../../../core/widgets/oma_card.dart';
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_text_styles.dart';
+import '../../../../../core/widgets/oma_bottom_sheet.dart';
+import '../../../../../core/widgets/oma_card.dart';
 
 import '../../../../notifications/presentation/widgets/notification_badge.dart';
 import '../../../../settings/presentation/home_settings_sheet.dart';

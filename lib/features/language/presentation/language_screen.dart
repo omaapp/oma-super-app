@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../../../core/theme/app_colors.dart';
+import '../../../core/theme/app_radius.dart';
+import '../../../core/theme/app_spacing.dart';
+import '../../../core/widgets/oma_card.dart';
 import '../../auth/presentation/login_screen.dart';
 
 class LanguageScreen extends StatefulWidget {
@@ -16,11 +20,9 @@ class _LanguageScreenState extends State<LanguageScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
-
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.all(24),
+          padding: const EdgeInsets.all(AppSpacing.lg),
           child: Column(
             children: [
               const Spacer(),
@@ -28,10 +30,10 @@ class _LanguageScreenState extends State<LanguageScreen> {
               const Icon(
                 Icons.language,
                 size: 90,
-                color: Color(0xFF1565C0),
+                color: AppColors.primary,
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSpacing.md),
 
               Text(
                 "Oma",
@@ -41,17 +43,17 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 ),
               ),
 
-              const SizedBox(height: 10),
+              const SizedBox(height: AppSpacing.sm),
 
               Text(
                 "اختر لغة التطبيق",
                 style: GoogleFonts.cairo(
                   fontSize: 22,
-                  color: Colors.grey.shade700,
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
                 ),
               ),
 
-              const SizedBox(height: 40),
+              const SizedBox(height: AppSpacing.xl),
 
               _languageCard(
                 title: "العربية",
@@ -59,7 +61,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 value: "ar",
               ),
 
-              const SizedBox(height: 15),
+              const SizedBox(height: AppSpacing.md),
 
               _languageCard(
                 title: "English",
@@ -91,7 +93,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
                 ),
               ),
 
-              const SizedBox(height: 20),
+              const SizedBox(height: AppSpacing.md),
             ],
           ),
         ),
@@ -112,28 +114,20 @@ class _LanguageScreenState extends State<LanguageScreen> {
           _selectedLanguage = value;
         });
       },
-      borderRadius: BorderRadius.circular(16),
-      child: Container(
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(
-          color: selected
-              ? const Color(0xFF1565C0).withValues(alpha: 0.1)
-              : Colors.white,
-          border: Border.all(
-            color: selected
-                ? const Color(0xFF1565C0)
-                : Colors.grey.shade300,
-            width: 2,
-          ),
-          borderRadius: BorderRadius.circular(16),
-        ),
+      borderRadius: BorderRadius.circular(AppRadius.md),
+      child: OmaCard(
+        padding: const EdgeInsets.all(AppSpacing.md),
+        color: selected ? AppColors.primary.withValues(alpha: .10) : null,
+        bordered: true,
+        borderColor: selected ? AppColors.primary : null,
+        radius: AppRadius.md,
         child: Row(
           children: [
             Text(
               flag,
               style: const TextStyle(fontSize: 28),
             ),
-            const SizedBox(width: 15),
+            const SizedBox(width: AppSpacing.md),
             Expanded(
               child: Text(
                 title,
@@ -146,7 +140,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
             if (selected)
               const Icon(
                 Icons.check_circle,
-                color: Color(0xFF1565C0),
+                color: AppColors.primary,
               ),
           ],
         ),
