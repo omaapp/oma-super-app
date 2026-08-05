@@ -7,10 +7,10 @@ import '../core/theme/app_theme.dart';
 import '../l10n/app_localizations.dart';
 
 import '../features/splash/presentation/splash_screen.dart';
-import '../features/customer/home/presentation/home_screen.dart';
 import '../features/customer/map/presentation/map_screen.dart';
 import '../features/trip/presentation/driver_arriving_screen.dart';
-
+import '../features/customer/navigation/presentation/main_navigation.dart';
+import 'app_routes.dart';
 class OmaApp extends StatelessWidget {
   const OmaApp({super.key});
 
@@ -36,19 +36,18 @@ class OmaApp extends StatelessWidget {
 
       darkTheme: AppTheme.dark,
 
-      initialRoute: "/",
+      initialRoute: AppRoutes.splash,
 
       routes: {
-        "/": (context) => const SplashScreen(),
-
-        "/home": (context) => const HomeScreen(),
-
-        "/map": (context) => const MapScreen(),
+        AppRoutes.splash: (_) => const SplashScreen(),
+        // MainNavigation owns the customer tabs; HomeScreen is its first tab.
+        AppRoutes.home: (_) => const MainNavigation(),
+        AppRoutes.map: (_) => const MapScreen(),
       },
 
       onGenerateRoute: (settings) {
         switch (settings.name) {
-          case "/driver-arriving":
+          case AppRoutes.driverArriving:
             final tripId = settings.arguments as String;
 
             return MaterialPageRoute(

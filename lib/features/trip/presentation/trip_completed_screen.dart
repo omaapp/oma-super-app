@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../app/app_routes.dart';
+
 class TripCompletedScreen extends StatelessWidget {
   final String tripId;
 
@@ -94,7 +96,7 @@ class TripCompletedScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.pushNamedAndRemoveUntil(
                         context,
-                        "/home",
+                        AppRoutes.home,
                         (route) => false,
                       );
                     },

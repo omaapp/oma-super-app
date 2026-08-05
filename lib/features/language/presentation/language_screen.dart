@@ -2,10 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../auth/presentation/login_screen.dart';
-Image.asset(
-  "assets/branding/logo.png",
-  width: 120,
-),
+
 class LanguageScreen extends StatefulWidget {
   const LanguageScreen({super.key});
 

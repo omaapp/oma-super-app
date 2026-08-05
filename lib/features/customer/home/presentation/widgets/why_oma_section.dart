@@ -5,56 +5,61 @@ class WhyOmaSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 18),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+
         children: [
+
           const Text(
-            "لماذا Oma؟",
+            "لماذا OMA ؟",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
             ),
           ),
 
-          const SizedBox(height: 18),
+          const SizedBox(height: 20),
 
           GridView.count(
-            crossAxisCount: 2,
-            shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            crossAxisSpacing: 16,
-            mainAxisSpacing: 16,
-            childAspectRatio: 1.15,
+            shrinkWrap: true,
+            crossAxisCount: 2,
+            crossAxisSpacing: 14,
+            mainAxisSpacing: 14,
+            childAspectRatio: .95,
+
             children: const [
 
               _FeatureCard(
-                icon: Icons.bolt,
-                color: Colors.amber,
-                title: "وصول سريع",
-                subtitle: "اعثر على أقرب سائق خلال ثوانٍ.",
+                icon: Icons.flash_on,
+                title: "استجابة سريعة",
+                subtitle: "أقرب سائق يصل إليك خلال دقائق",
+                color: Colors.orange,
               ),
 
               _FeatureCard(
                 icon: Icons.security,
-                color: Colors.green,
                 title: "رحلات آمنة",
-                subtitle: "سائقون موثقون وتتبع مباشر.",
+                subtitle: "جميع السائقين موثقون",
+                color: Colors.green,
               ),
 
               _FeatureCard(
                 icon: Icons.payments,
+                title: "أسعار واضحة",
+                subtitle: "السعر يظهر قبل تأكيد الرحلة",
                 color: Colors.blue,
-                title: "أسعار مناسبة",
-                subtitle: "أسعار واضحة بدون رسوم مخفية.",
               ),
 
               _FeatureCard(
-                icon: Icons.location_searching,
+                icon: Icons.support_agent,
+                title: "دعم 24/7",
+                subtitle: "فريق دعم جاهز دائماً",
                 color: Colors.deepPurple,
-                title: "تتبع مباشر",
-                subtitle: "تابع السائق لحظة بلحظة.",
               ),
             ],
           ),
@@ -67,18 +72,15 @@ class WhyOmaSection extends StatelessWidget {
 class _FeatureCard extends StatelessWidget {
 
   final IconData icon;
-
-  final Color color;
-
   final String title;
-
   final String subtitle;
+  final Color color;
 
   const _FeatureCard({
     required this.icon,
-    required this.color,
     required this.title,
     required this.subtitle,
+    required this.color,
   });
 
   @override
@@ -97,9 +99,10 @@ class _FeatureCard extends StatelessWidget {
         boxShadow: const [
 
           BoxShadow(
-            blurRadius: 12,
-            color: Colors.black12,
-          )
+            color: Color(0x11000000),
+            blurRadius: 14,
+            offset: Offset(0,6),
+          ),
         ],
       ),
 
@@ -110,8 +113,11 @@ class _FeatureCard extends StatelessWidget {
         children: [
 
           CircleAvatar(
+
             radius: 24,
+
             backgroundColor: color.withOpacity(.12),
+
             child: Icon(
               icon,
               color: color,
@@ -128,13 +134,14 @@ class _FeatureCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(height: 6),
+          const SizedBox(height: 8),
 
           Text(
             subtitle,
-            style: const TextStyle(
-              color: Colors.grey,
+            style: TextStyle(
+              color: Colors.grey.shade600,
               fontSize: 13,
+              height: 1.4,
             ),
           ),
         ],

@@ -48,12 +48,11 @@ class DriverHistoryScreen extends StatelessWidget {
 
           return ListView.builder(
             padding: const EdgeInsets.all(16),
-            itemCount: trips.length,ز
-                        itemBuilder: (context, index) {
+            itemCount: trips.length,
+            itemBuilder: (context, index) {
 
               final trip =
-                  trips[index].data()
-                      as Map<String, dynamic>;
+                  trips[index].data() as Map<String, dynamic>;
 
               return Card(
                 margin:

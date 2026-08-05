@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../../customer/home/presentation/customer_main_screen.dart';
+import '../../../app/app_routes.dart';
 import '../data/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../user/data/user_service.dart';
@@ -100,11 +100,9 @@ if (role == "driver") {
     (_) => false,
   );
 } else {
-  Navigator.pushAndRemoveUntil(
+  Navigator.pushNamedAndRemoveUntil(
     context,
-    MaterialPageRoute(
-      builder: (_) => const CustomerMainScreen(),
-    ),
+    AppRoutes.home,
     (_) => false,
   );
 }

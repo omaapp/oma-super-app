@@ -1,150 +1,163 @@
 import 'package:flutter/material.dart';
-import '../../../../../core/theme/app_colors.dart';
-import '../../../../../core/theme/app_radius.dart';
-import '../../../../../core/theme/app_spacing.dart';
-import '../../../../../core/theme/app_shadows.dart';
-import '../../../../../core/theme/app_text_styles.dart';
+
 class NewsSection extends StatelessWidget {
   const NewsSection({super.key});
 
   @override
-Widget build(BuildContext context) {
-  return Padding(
-    padding: const EdgeInsets.symmetric(horizontal: 18),
-    child: Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
 
-        Text(
-          "آخر الأخبار",
-          style: AppTextStyles.title,
-        ),
+          const Text(
+            "آخر الأخبار",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
 
-        const SizedBox(height: 18),
+          const SizedBox(height: 20),
 
-        const _NewsCard(
-          icon: Icons.campaign,
-          color: Colors.blue,
-          title: "إطلاق قريب",
-          subtitle: "سيتم إطلاق خدمة النقل داخل المدينة قريبًا.",
-        ),
+          const _NewsCard(
+            title: "إطلاق خدمة Taxi الجديدة",
+            subtitle:
+                "أصبح بإمكانك طلب سيارة خلال دقائق داخل الرفاعي.",
+            icon: Icons.local_taxi,
+            color: Color(0xff1565C0),
+          ),
 
-        const SizedBox(height: 15),
+          SizedBox(height: 16),
 
-        const _NewsCard(
-          icon: Icons.local_offer,
-          color: Colors.orange,
-          title: "عروض قادمة",
-          subtitle: "ترقب خصومات للمستخدمين الجدد.",
-        ),
+          _NewsCard(
+            title: "خصومات نهاية الأسبوع",
+            subtitle:
+                "استمتع بخصومات تصل إلى 30% على جميع الرحلات.",
+            icon: Icons.discount,
+            color: Colors.orange,
+          ),
 
-        const SizedBox(height: 15),
+          SizedBox(height: 16),
 
-        const _NewsCard(
-          icon: Icons.electric_rickshaw,
-          color: Colors.green,
-          title: "خدمة Tuk Tuk",
-          subtitle: "ستتوفر قريبًا في جميع المناطق.",
-        ),
-      ],
-    ),
+          _NewsCard(
+            title: "إضافة سائقين جدد",
+            subtitle:
+                "تم توسيع أسطول السائقين لتقليل وقت الانتظار.",
+            icon: Icons.people,
+            color: Colors.green,
+          ),
+        ],
+      ),
     );
+  }
 }
 
-} // نهاية NewsSection
-
 class _NewsCard extends StatelessWidget {
-  final IconData icon;
-  final Color color;
+
   final String title;
   final String subtitle;
+  final IconData icon;
+  final Color color;
 
   const _NewsCard({
-    required this.icon,
-    required this.color,
     required this.title,
     required this.subtitle,
+    required this.icon,
+    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(18),
 
-      decoration: BoxDecoration(
-  color: Theme.of(context).cardColor,
-  borderRadius: BorderRadius.circular(AppRadius.lg),
-  boxShadow: AppShadows.card,
-),
+    return InkWell(
 
-      child: Row(
-        children: [
-          CircleAvatar(
-            radius: 28,
-            backgroundColor: color.withOpacity(.12),
-            child: Icon(
-              icon,
-              color: color,
-              size: 28,
+      borderRadius: BorderRadius.circular(22),
+
+      onTap: () {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(title),
+          ),
+        );
+      },
+
+      child: Container(
+
+        padding: const EdgeInsets.all(18),
+
+        decoration: BoxDecoration(
+
+          color: Colors.white,
+
+          borderRadius: BorderRadius.circular(22),
+
+          boxShadow: const [
+
+            BoxShadow(
+              color: Color(0x11000000),
+              blurRadius: 14,
+              offset: Offset(0,6),
             ),
-          ),
+          ],
+        ),
 
-          const SizedBox(width: 16),
+        child: Row(
 
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Expanded(
-                      child: Text(
-                        title,
-                        style: AppTextStyles.heading,
-                      ),
-                    ),
+          children: [
 
-                    Container(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 4,
-                      ),
-                      decoration: BoxDecoration(
-                        color: color.withOpacity(.12),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        "جديد",
-                        style: TextStyle(
-                          color: color,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 11,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
+            CircleAvatar(
 
-                const SizedBox(height: 8),
+              radius: 30,
 
-                Text(
-                  subtitle,
-                  style: AppTextStyles.subtitle.copyWith(
-  height: 1.5,
-),
-                ),
-              ],
+              backgroundColor:
+                  color.withOpacity(.12),
+
+              child: Icon(
+                icon,
+                color: color,
+              ),
             ),
-          ),
 
-          const SizedBox(width: 10),
+            const SizedBox(width: 18),
 
-          const Icon(
-            Icons.arrow_forward_ios,
-            color: Colors.grey,
-            size: 18,
-          ),
-        ],
+            Expanded(
+
+              child: Column(
+
+                crossAxisAlignment:
+                    CrossAxisAlignment.start,
+
+                children: [
+
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 17,
+                    ),
+                  ),
+
+                  const SizedBox(height: 8),
+
+                  Text(
+                    subtitle,
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                      height: 1.4,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            const Icon(
+              Icons.arrow_forward_ios,
+              size: 18,
+            ),
+          ],
+        ),
       ),
     );
   }

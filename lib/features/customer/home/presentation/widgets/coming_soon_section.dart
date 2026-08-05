@@ -1,64 +1,73 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/theme/app_colors.dart';
-import '../../../../../core/theme/app_radius.dart';
-import '../../../../../core/theme/app_spacing.dart';
-import '../../../../../core/theme/app_shadows.dart';
-import '../../../../../core/theme/app_text_styles.dart';
-
 class ComingSoonSection extends StatelessWidget {
   const ComingSoonSection({super.key});
 
   @override
   Widget build(BuildContext context) {
+
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        horizontal: AppSpacing.md,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: 18),
+
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
+
         children: [
-          Text(
-            "قريباً في Oma",
-            style: AppTextStyles.title,
+
+          const Text(
+            "قريباً في OMA",
+            style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.bold,
+            ),
           ),
 
-          const SizedBox(height: AppSpacing.lg),
+          const SizedBox(height: 20),
 
           GridView.count(
-            shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
             crossAxisCount: 2,
-            crossAxisSpacing: 15,
-            mainAxisSpacing: 15,
+            crossAxisSpacing: 14,
+            mainAxisSpacing: 14,
             childAspectRatio: .95,
+
             children: const [
+
               _ComingCard(
                 icon: Icons.delivery_dining,
-                color: Colors.deepOrange,
-                title: "توصيل الطلبات",
-                subtitle: "استلم طلباتك بسرعة",
+                title: "توصيل الطعام",
+                color: Colors.red,
               ),
 
               _ComingCard(
                 icon: Icons.shopping_bag,
+                title: "المتجر",
+                color: Colors.blue,
+              ),
+
+              _ComingCard(
+                icon: Icons.local_shipping,
+                title: "توصيل الطلبات",
+                color: Colors.orange,
+              ),
+
+              _ComingCard(
+                icon: Icons.electric_bolt,
+                title: "شحن الرصيد",
                 color: Colors.green,
-                title: "التسوق",
-                subtitle: "شراء الاحتياجات اليومية",
               ),
 
               _ComingCard(
-                icon: Icons.local_pharmacy,
-                color: Colors.red,
+                icon: Icons.medical_services,
                 title: "الصيدليات",
-                subtitle: "توصيل الأدوية",
+                color: Colors.purple,
               ),
 
               _ComingCard(
-                icon: Icons.restaurant,
-                color: Colors.amber,
-                title: "المطاعم",
-                subtitle: "اطلب وجبتك المفضلة",
+                icon: Icons.more_horiz,
+                title: "المزيد",
+                color: Colors.teal,
               ),
             ],
           ),
@@ -69,89 +78,101 @@ class ComingSoonSection extends StatelessWidget {
 }
 
 class _ComingCard extends StatelessWidget {
+
   final IconData icon;
-  final Color color;
   final String title;
-  final String subtitle;
+  final Color color;
 
   const _ComingCard({
     required this.icon,
-    required this.color,
     required this.title,
-    required this.subtitle,
+    required this.color,
   });
 
   @override
   Widget build(BuildContext context) {
+
     return InkWell(
-      borderRadius: BorderRadius.circular(AppRadius.lg),
+
+      borderRadius: BorderRadius.circular(22),
+
       onTap: () {
+
         ScaffoldMessenger.of(context).showSnackBar(
+
           SnackBar(
             content: Text(
-              "$title ستكون متوفرة قريباً",
+              "$title قريباً",
             ),
           ),
         );
       },
+
       child: Container(
-        padding: const EdgeInsets.all(AppSpacing.lg),
+
         decoration: BoxDecoration(
-          color: AppColors.card,
-          borderRadius: BorderRadius.circular(AppRadius.lg),
-          boxShadow: AppShadows.card,
+
+          color: Colors.white,
+
+          borderRadius: BorderRadius.circular(22),
+
+          boxShadow: const [
+
+            BoxShadow(
+              color: Color(0x11000000),
+              blurRadius: 14,
+              offset: Offset(0,6),
+            ),
+          ],
         ),
+
         child: Column(
+
           mainAxisAlignment: MainAxisAlignment.center,
+
           children: [
-            Container(
-              width: 65,
-              height: 65,
-              decoration: BoxDecoration(
-                color: color.withOpacity(.12),
-                shape: BoxShape.circle,
-              ),
+
+            CircleAvatar(
+
+              radius: 28,
+
+              backgroundColor:
+                  color.withOpacity(.12),
+
               child: Icon(
                 icon,
                 color: color,
-                size: 34,
+                size: 30,
               ),
             ),
 
-            const SizedBox(height: AppSpacing.lg),
+            const SizedBox(height: 16),
 
             Text(
               title,
               textAlign: TextAlign.center,
-              style: AppTextStyles.heading,
-            ),
-
-            const SizedBox(height: AppSpacing.sm),
-
-            Text(
-              subtitle,
-              textAlign: TextAlign.center,
-              style: AppTextStyles.subtitle.copyWith(
-                height: 1.4,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
               ),
             ),
 
-            const SizedBox(height: AppSpacing.md),
+            const SizedBox(height: 8),
 
             Container(
               padding: const EdgeInsets.symmetric(
                 horizontal: 12,
-                vertical: 6,
+                vertical: 4,
               ),
               decoration: BoxDecoration(
-                color: AppColors.primary.withOpacity(.08),
-                borderRadius: BorderRadius.circular(20),
+                color: Colors.grey.shade200,
+                borderRadius:
+                    BorderRadius.circular(20),
               ),
-              child: Text(
+              child: const Text(
                 "قريباً",
-                style: AppTextStyles.subtitle.copyWith(
-                  color: AppColors.primary,
-                  fontWeight: FontWeight.bold,
+                style: TextStyle(
+                  fontSize: 12,
                 ),
               ),
             ),

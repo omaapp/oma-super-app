@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-import '../../driver/presentation/driver_arriving_screen.dart';
+import 'driver_arriving_screen.dart';
 import '../data/trip_service.dart';
 
 class SearchingDriverScreen extends StatefulWidget {
@@ -33,7 +33,30 @@ class _SearchingDriverScreenState
   @override
   void initState() {
     super.initState();
-      void listenTrip() {
+
+    pulseController = AnimationController(
+      vsync: this,
+      duration: const Duration(
+        milliseconds: 1200,
+      ),
+    );
+
+    scaleAnimation = Tween(
+      begin: .9,
+      end: 1.1,
+    ).animate(
+      CurvedAnimation(
+        parent: pulseController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    pulseController.repeat(reverse: true);
+
+    listenTrip();
+  }
+
+  void listenTrip() {
     subscription = TripService.instance
         .tripStream(widget.tripId)
         .listen((trip) {
@@ -73,32 +96,12 @@ class _SearchingDriverScreenState
       }
     });
   }
-    @override
+
+  @override
   void dispose() {
     pulseController.dispose();
     subscription?.cancel();
     super.dispose();
-  }
-    pulseController = AnimationController(
-      vsync: this,
-      duration: const Duration(
-        milliseconds: 1200,
-      ),
-    );
-
-    scaleAnimation = Tween(
-      begin: .9,
-      end: 1.1,
-    ).animate(
-      CurvedAnimation(
-        parent: pulseController,
-        curve: Curves.easeInOut,
-      ),
-    );
-
-    pulseController.repeat(reverse: true);
-
-    listenTrip();
   }
     @override
   Widget build(BuildContext context) {

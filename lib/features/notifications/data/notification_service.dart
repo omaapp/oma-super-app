@@ -103,18 +103,32 @@ Future<void> createTripNotification({
   }
 
   /// حذف جميع الإشعارات
-  Future<void> clearNotifications(
-    String userId,
-  ) async {
-    final docs =
-        await _collection(userId).get();
+Future<void> clearNotifications(String userId) async {
+  final docs = await _collection(userId).get();
 
-    final batch = firestore.batch();
+  final batch = firestore.batch();
 
-    for (final doc in docs.docs) {
-      batch.delete(doc.reference);
-    }
-
-    await batch.commit();
+  for (final doc in docs.docs) {
+    batch.delete(doc.reference);
   }
+
+  await batch.commit();
+}
+
+/// إرسال إشعار
+Future<void> sendNotification({
+  required String userId,
+  required String title,
+  required String body,
+  required String type,
+  String? tripId,
+}) async {
+  return addNotification(
+    userId: userId,
+    title: title,
+    body: body,
+    type: type,
+    tripId: tripId,
+  );
+}
 }

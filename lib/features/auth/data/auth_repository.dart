@@ -48,8 +48,6 @@ class AuthRepository {
   createdAt: DateTime.now(),
 );
 
-await doc.set(appUser.toMap());
-
       await doc.set(appUser.toMap());
     }
   }

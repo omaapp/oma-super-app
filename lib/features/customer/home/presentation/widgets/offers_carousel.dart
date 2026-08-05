@@ -1,22 +1,29 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+
 import '../../../map/presentation/map_screen.dart';
+
+import '../../../../../core/theme/app_colors.dart';
 import '../../../../../core/theme/app_radius.dart';
-import '../../../../../core/theme/app_spacing.dart';
 import '../../../../../core/theme/app_shadows.dart';
+import '../../../../../core/theme/app_spacing.dart';
 import '../../../../../core/theme/app_text_styles.dart';
+
+import '../../../../../core/widgets/oma_card.dart';
+import '../../../../../core/widgets/primary_button.dart';
 
 class OffersCarousel extends StatefulWidget {
   const OffersCarousel({super.key});
 
   @override
-  State<OffersCarousel> createState() => _OffersCarouselState();
+  State<OffersCarousel> createState() =>
+      _OffersCarouselState();
 }
 
-class _OffersCarouselState extends State<OffersCarousel> {
-  final PageController controller =
-      PageController(viewportFraction: .92);
+class _OffersCarouselState
+    extends State<OffersCarousel> {
+  late final PageController controller;
 
   int currentPage = 0;
 
@@ -26,26 +33,30 @@ class _OffersCarouselState extends State<OffersCarousel> {
     _OfferItem(
       title: "خصم 30%",
       subtitle: "على أول رحلة لك",
-      color: Color(0xff1565C0),
-      icon: Icons.local_offer,
+      color: AppColors.primary,
+      icon: Icons.local_offer_rounded,
     ),
     _OfferItem(
       title: "Taxi",
       subtitle: "رحلات أسرع داخل المدينة",
       color: Colors.orange,
-      icon: Icons.local_taxi,
+      icon: Icons.local_taxi_rounded,
     ),
     _OfferItem(
       title: "Tuk Tuk",
       subtitle: "تنقل سريع واقتصادي",
-      color: Colors.green,
-      icon: Icons.electric_rickshaw,
+      color: AppColors.success,
+      icon: Icons.electric_rickshaw_rounded,
     ),
   ];
 
   @override
   void initState() {
     super.initState();
+
+    controller = PageController(
+      viewportFraction: .90,
+    );
 
     timer = Timer.periodic(
       const Duration(seconds: 4),
@@ -58,11 +69,15 @@ class _OffersCarouselState extends State<OffersCarousel> {
 
         controller.animateToPage(
           currentPage,
-          duration: const Duration(milliseconds: 500),
+          duration: const Duration(
+            milliseconds: 450,
+          ),
           curve: Curves.easeInOut,
         );
 
-        setState(() {});
+        if (mounted) {
+          setState(() {});
+        }
       },
     );
   }
@@ -78,92 +93,174 @@ class _OffersCarouselState extends State<OffersCarousel> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+
         SizedBox(
-          height: 190,
+          height: 220,
+
           child: PageView.builder(
             controller: controller,
+
             itemCount: offers.length,
-            onPageChanged: (index) {
+
+            onPageChanged: (value) {
               setState(() {
-                currentPage = index;
+                currentPage = value;
               });
             },
+
             itemBuilder: (_, index) {
+
               final item = offers[index];
 
-              return GestureDetector(
-                onTap: () {
-                  Navigator.push(
+              return Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 6,
+                  vertical: 4,
+                ),
+
+                child: OmaCard(
+                  onTap: () => _openOffer(
                     context,
-                    MaterialPageRoute(
-                      builder: (_) => MapScreen(
-                        initialVehicle:
-                            item.title == "Tuk Tuk"
-                                ? "tuk"
-                                : "taxi",
+                    item,
+                  ),
+
+                  padding: EdgeInsets.zero,
+
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius:
+                          BorderRadius.circular(
+                        AppRadius.large,
+                      ),
+
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+
+                        colors: [
+                          item.color,
+                          item.color.withValues(
+                            alpha: .85,
+                          ),
+                        ],
                       ),
                     ),
-                  );
-                },
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 300),
-                  margin: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 8,
-                  ),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(
-                      AppRadius.large,
-                    ),
-                    gradient: LinearGradient(
-                      colors: [
-                        item.color,
-                        item.color.withOpacity(.75),
-                      ],
-                    ),
-                    boxShadow: AppShadows.card,
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(
-                      AppSpacing.lg,
-                    ),
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment:
-                                CrossAxisAlignment.start,
-                            mainAxisAlignment:
-                                MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                item.title,
-                                style:
-                                    AppTextStyles.title.copyWith(
-                                  color: Colors.white,
+
+                    child: Padding(
+                      padding:
+                          const EdgeInsets.all(
+                        AppSpacing.xl,
+                      ),
+
+                      child: Row(
+                        children: [
+
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment:
+                                  CrossAxisAlignment
+                                      .start,
+
+                              mainAxisAlignment:
+                                  MainAxisAlignment
+                                      .center,
+
+                              children: [
+
+                                Text(
+                                  item.title,
+
+                                  style:
+                                      AppTextStyles
+                                          .title
+                                          .copyWith(
+                                    color:
+                                        Colors.white,
+                                  ),
                                 ),
-                              ),
-                              const SizedBox(height: 12),
-                              Text(
-                                item.subtitle,
-                                style:
-                                    AppTextStyles.body.copyWith(
-                                  color: Colors.white,
+
+                                const SizedBox(
+                                  height: 12,
                                 ),
+
+                                Text(
+                                  item.subtitle,
+
+                                  style:
+                                      AppTextStyles
+                                          .body
+                                          .copyWith(
+                                    color:
+                                        Colors.white,
+                                  ),
+                                ),
+
+                                const SizedBox(
+                                  height: 24,
+                                ),
+
+                                SizedBox(
+                                  width: 150,
+
+                                  child:
+                                      PrimaryButton(
+                                    text:
+                                        "اطلب الآن",
+
+                                    icon: Icons
+                                        .arrow_forward,
+
+                                    backgroundColor:
+                                        Colors.white,
+
+                                    foregroundColor:
+                                        item.color,
+
+                                    onPressed: () {
+                                      _openOffer(
+                                        context,
+                                        item,
+                                      );
+                                    },
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+
+                          const SizedBox(
+                            width: 18,
+                          ),
+
+                          Container(
+                            width: 90,
+                            height: 90,
+
+                            decoration:
+                                BoxDecoration(
+                              color: Colors.white
+                                  .withValues(
+                                alpha: .15,
                               ),
-                            ],
+
+                              borderRadius:
+                                  BorderRadius
+                                      .circular(
+                                24,
+                              ),
+                            ),
+
+                            child: Icon(
+                              item.icon,
+
+                              color:
+                                  Colors.white,
+
+                              size: 46,
+                            ),
                           ),
-                        ),
-                        CircleAvatar(
-                          radius: 38,
-                          backgroundColor: Colors.white24,
-                          child: Icon(
-                            item.icon,
-                            color: Colors.white,
-                            size: 42,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -171,27 +268,39 @@ class _OffersCarouselState extends State<OffersCarousel> {
             },
           ),
         ),
-
-        const SizedBox(height: 12),
+                const SizedBox(height: 18),
 
         Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment:
+              MainAxisAlignment.center,
+
           children: List.generate(
             offers.length,
             (index) {
-              final active = currentPage == index;
+              final active =
+                  currentPage == index;
 
               return AnimatedContainer(
-                duration:
-                    const Duration(milliseconds: 250),
+                duration: const Duration(
+                  milliseconds: 250,
+                ),
+
                 margin:
-                    const EdgeInsets.symmetric(horizontal: 4),
-                width: active ? 24 : 8,
+                    const EdgeInsets.symmetric(
+                  horizontal: 4,
+                ),
+
                 height: 8,
+
+                width: active ? 26 : 8,
+
                 decoration: BoxDecoration(
                   color: active
-                      ? const Color(0xff1565C0)
-                      : Colors.grey.shade400,
+                      ? AppColors.primary
+                      : Colors.grey.withValues(
+                          alpha: .35,
+                        ),
+
                   borderRadius:
                       BorderRadius.circular(20),
                 ),
@@ -202,12 +311,45 @@ class _OffersCarouselState extends State<OffersCarousel> {
       ],
     );
   }
+
+  void _openOffer(
+    BuildContext context,
+    _OfferItem item,
+  ) {
+    if (item.title == "خصم 30%") {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(
+        const SnackBar(
+          content: Text(
+            "سيتم عرض جميع العروض قريباً",
+          ),
+        ),
+      );
+
+      return;
+    }
+
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => MapScreen(
+          initialVehicle:
+              item.title == "Tuk Tuk"
+                  ? "tuk"
+                  : "taxi",
+        ),
+      ),
+    );
+  }
 }
 
 class _OfferItem {
   final String title;
+
   final String subtitle;
+
   final Color color;
+
   final IconData icon;
 
   const _OfferItem({

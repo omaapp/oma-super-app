@@ -5,24 +5,20 @@ import '../theme/app_text_styles.dart';
 
 class OmaTextField extends StatelessWidget {
   final TextEditingController controller;
-
   final String hint;
-
   final String? label;
-
   final IconData? prefixIcon;
-
   final Widget? suffixIcon;
-
   final TextInputType keyboardType;
-
   final bool obscureText;
-
   final int? maxLength;
-
   final ValueChanged<String>? onChanged;
-
   final String? Function(String?)? validator;
+  final bool enabled;
+  final FocusNode? focusNode;
+  final TextInputAction? textInputAction;
+  final VoidCallback? onTap;
+  final bool readOnly;
 
   const OmaTextField({
     super.key,
@@ -36,35 +32,45 @@ class OmaTextField extends StatelessWidget {
     this.maxLength,
     this.onChanged,
     this.validator,
+    this.enabled = true,
+    this.focusNode,
+    this.textInputAction,
+    this.onTap,
+    this.readOnly = false,
   });
 
   @override
   Widget build(BuildContext context) {
+    final dark = Theme.of(context).brightness == Brightness.dark;
+
     return TextFormField(
       controller: controller,
-
       keyboardType: keyboardType,
-
       obscureText: obscureText,
-
       maxLength: maxLength,
-
       onChanged: onChanged,
-
       validator: validator,
-
-      style: AppTextStyles.body,
-
+      enabled: enabled,
+      focusNode: focusNode,
+      textInputAction: textInputAction,
+      onTap: onTap,
+      readOnly: readOnly,
+      cursorColor: AppColors.primary,
+      style: AppTextStyles.body.copyWith(
+        color: dark ? Colors.white : Colors.black87,
+      ),
       decoration: InputDecoration(
         counterText: "",
-
         hintText: hint,
-
         labelText: label,
 
-        hintStyle: AppTextStyles.caption,
+        hintStyle: AppTextStyles.caption.copyWith(
+          color: dark ? Colors.white54 : Colors.grey,
+        ),
 
-        labelStyle: AppTextStyles.caption,
+        labelStyle: AppTextStyles.caption.copyWith(
+          color: dark ? Colors.white70 : Colors.grey.shade700,
+        ),
 
         prefixIcon: prefixIcon == null
             ? null
@@ -77,15 +83,26 @@ class OmaTextField extends StatelessWidget {
 
         filled: true,
 
-        fillColor:
-            Theme.of(context).brightness == Brightness.dark
-                ? AppColors.darkSurface
-                : Colors.white,
+        fillColor: dark
+            ? AppColors.darkCard
+            : Colors.white,
+
+        contentPadding: const EdgeInsets.symmetric(
+          horizontal: 18,
+          vertical: 18,
+        ),
+
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide.none,
+        ),
 
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(18),
-          borderSide: const BorderSide(
-            color: AppColors.divider,
+          borderSide: BorderSide(
+            color: dark
+                ? Colors.white12
+                : AppColors.divider,
           ),
         ),
 
@@ -94,6 +111,15 @@ class OmaTextField extends StatelessWidget {
           borderSide: const BorderSide(
             color: AppColors.primary,
             width: 2,
+          ),
+        ),
+
+        disabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(18),
+          borderSide: BorderSide(
+            color: dark
+                ? Colors.white10
+                : Colors.grey.shade300,
           ),
         ),
 
@@ -110,6 +136,10 @@ class OmaTextField extends StatelessWidget {
             color: AppColors.error,
             width: 2,
           ),
+        ),
+
+        errorStyle: AppTextStyles.caption.copyWith(
+          color: AppColors.error,
         ),
       ),
     );

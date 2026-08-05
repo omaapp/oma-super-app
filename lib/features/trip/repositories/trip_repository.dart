@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../../core/firebase/firestore_service.dart';
+import 'package:oma_super_app/core/services/firestore_service.dart';
 
 class TripRepository {
   TripRepository._();

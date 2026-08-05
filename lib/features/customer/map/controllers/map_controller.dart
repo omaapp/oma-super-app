@@ -9,7 +9,7 @@ import '../../../../core/services/directions_service.dart';
 import '../../../../core/services/google_places_service.dart';
 import '../../../../core/services/location_service.dart';
 import '../../../trip/data/trip_service.dart';
-
+import '../../../notifications/data/notification_service.dart';
 class MapController {
   MapController({
     required this.controller,
@@ -410,7 +410,13 @@ Future<void> cancelTrip() async {
     tripCancelled = false;
 
     tripStatus = "pending";
-
+await NotificationService.instance.sendNotification(
+  userId: user.uid,
+  title: "تم إرسال طلب الرحلة",
+  body: "جارٍ البحث عن أقرب سائق إليك.",
+  type: "trip",
+  tripId: tripId,
+);
     return true;
   }
 

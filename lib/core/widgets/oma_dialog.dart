@@ -18,58 +18,79 @@ class OmaDialog {
   }) {
     return showDialog<bool>(
       context: context,
+      barrierDismissible: false,
       builder: (_) {
         return AlertDialog(
+          backgroundColor: Theme.of(context).cardColor,
+          surfaceTintColor: Colors.transparent,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24),
           ),
 
-          title: Text(
-            title,
-            style: AppTextStyles.title,
-          ),
+          contentPadding: const EdgeInsets.all(24),
 
-          content: Text(
-            message,
-            style: AppTextStyles.body,
-          ),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                title,
+                style: AppTextStyles.title,
+                textAlign: TextAlign.center,
+              ),
 
-          actionsPadding: const EdgeInsets.all(18),
+              const SizedBox(height: 16),
 
-          actions: [
+              Text(
+                message,
+                style: AppTextStyles.body,
+                textAlign: TextAlign.center,
+              ),
 
-            PrimaryButton(
-              text: confirmText,
-              onPressed: () {
-                Navigator.pop(context, true);
-              },
-            ),
+              const SizedBox(height: 28),
 
-            const SizedBox(height: 10),
-
-            if (danger)
-
-              DangerButton(
-                text: cancelText,
+              PrimaryButton(
+                text: confirmText,
                 onPressed: () {
-                  Navigator.pop(context, false);
+                  Navigator.pop(context, true);
                 },
-              )
+              ),
 
-            else
+              const SizedBox(height: 12),
 
-              TextButton(
-                onPressed: () {
-                  Navigator.pop(context, false);
-                },
-                child: Text(
-                  cancelText,
-                  style: const TextStyle(
-                    color: AppColors.primary,
+              if (danger)
+                DangerButton(
+                  text: cancelText,
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                )
+              else
+                SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: OutlinedButton(
+                    onPressed: () {
+                      Navigator.pop(context, false);
+                    },
+                    style: OutlinedButton.styleFrom(
+                      side: const BorderSide(
+                        color: AppColors.primary,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(18),
+                      ),
+                    ),
+                    child: Text(
+                      cancelText,
+                      style: AppTextStyles.body.copyWith(
+                        color: AppColors.primary,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-              ),
-          ],
+            ],
+          ),
         );
       },
     );

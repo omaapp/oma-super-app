@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../../core/theme/app_colors.dart';
+import '../../../../../core/theme/app_text_styles.dart';
+
 class VehicleSelector extends StatelessWidget {
   final String selectedVehicle;
   final ValueChanged<String> onChanged;
@@ -20,8 +23,9 @@ class VehicleSelector extends StatelessWidget {
             subtitle: "4 مقاعد",
             eta: "3 دقائق",
             price: "2000 د.ع",
+            badge: "الأكثر طلباً",
             icon: Icons.local_taxi,
-            color: Colors.blue,
+            color: AppColors.primary,
             selected: selectedVehicle == "taxi",
             onTap: () => onChanged("taxi"),
           ),
@@ -35,6 +39,7 @@ class VehicleSelector extends StatelessWidget {
             subtitle: "2 مقاعد",
             eta: "2 دقيقة",
             price: "1000 د.ع",
+            badge: "الأوفر",
             icon: Icons.electric_rickshaw,
             color: Colors.orange,
             selected: selectedVehicle == "tuk",
@@ -51,9 +56,13 @@ class _VehicleTile extends StatelessWidget {
   final String subtitle;
   final String eta;
   final String price;
+  final String badge;
+
   final IconData icon;
   final Color color;
+
   final bool selected;
+
   final VoidCallback onTap;
 
   const _VehicleTile({
@@ -61,6 +70,7 @@ class _VehicleTile extends StatelessWidget {
     required this.subtitle,
     required this.eta,
     required this.price,
+    required this.badge,
     required this.icon,
     required this.color,
     required this.selected,
@@ -76,7 +86,8 @@ class _VehicleTile extends StatelessWidget {
       onTap: onTap,
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 250),
-        padding: const EdgeInsets.all(16),
+        curve: Curves.easeInOut,
+        padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
           color: selected
               ? color
@@ -86,124 +97,172 @@ class _VehicleTile extends StatelessWidget {
             color: selected
                 ? color
                 : theme.dividerColor,
-            width: 1.3,
+            width: selected ? 2 : 1.2,
           ),
           boxShadow: [
             BoxShadow(
               color: selected
-                  ? color.withOpacity(.30)
+                  ? color.withOpacity(.28)
                   : Colors.black.withOpacity(.05),
-              blurRadius: 16,
+              blurRadius: 18,
               offset: const Offset(0, 8),
             ),
           ],
         ),
         child: Column(
-          children: [
-            Align(
-              alignment: Alignment.topRight,
-              child: Icon(
-                selected
-                    ? Icons.check_circle
-                    : Icons.radio_button_unchecked,
-                color: selected
-                    ? Colors.white
-                    : Colors.grey,
-              ),
-            ),
+  children: [
 
-            const SizedBox(height: 8),
-
-            CircleAvatar(
-              radius: 34,
-              backgroundColor: selected
-                  ? Colors.white24
-                  : color.withOpacity(.12),
-              child: Icon(
-                icon,
-                size: 36,
-                color: selected
-                    ? Colors.white
-                    : color,
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            Text(
-              title,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                color: selected
-                    ? Colors.white
-                    : theme.colorScheme.onSurface,
-              ),
-            ),
-
-            const SizedBox(height: 6),
-
-            Text(
-              subtitle,
-              style: TextStyle(
-                color: selected
-                    ? Colors.white70
-                    : Colors.grey,
-              ),
-            ),
-
-            const SizedBox(height: 14),
-
-            Row(
-              children: [
-                Icon(
-                  Icons.schedule,
-                  size: 17,
-                  color: selected
-                      ? Colors.white
-                      : color,
-                ),
-                const SizedBox(width: 5),
-                Expanded(
-                  child: Text(
-                    eta,
-                    style: TextStyle(
-                      color: selected
-                          ? Colors.white
-                          : theme.colorScheme.onSurface,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-
-            const SizedBox(height: 8),
-
-            Row(
-              children: [
-                Icon(
-                  Icons.payments,
-                  size: 17,
-                  color: selected
-                      ? Colors.white
-                      : Colors.green,
-                ),
-                const SizedBox(width: 5),
-                Expanded(
-                  child: Text(
-                    price,
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: selected
-                          ? Colors.white
-                          : Colors.green,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ],
+    Align(
+      alignment: Alignment.topRight,
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 10,
+          vertical: 4,
         ),
+        decoration: BoxDecoration(
+          color: selected
+              ? Colors.white24
+              : color.withOpacity(.10),
+          borderRadius: BorderRadius.circular(20),
+        ),
+        child: Text(
+          badge,
+          style: TextStyle(
+            color: selected
+                ? Colors.white
+                : color,
+            fontWeight: FontWeight.bold,
+            fontSize: 11,
+          ),
+        ),
+      ),
+    ),
+
+    const SizedBox(height: 12),
+
+    Hero(
+      tag: title,
+      child: CircleAvatar(
+        radius: 34,
+        backgroundColor: selected
+            ? Colors.white24
+            : color.withOpacity(.12),
+        child: Icon(
+          icon,
+          size: 36,
+          color: selected
+              ? Colors.white
+              : color,
+        ),
+      ),
+    ),
+
+    const SizedBox(height: 16),
+
+    Text(
+      title,
+      style: AppTextStyles.title.copyWith(
+        color: selected
+            ? Colors.white
+            : theme.colorScheme.onSurface,
+      ),
+    ),
+
+    const SizedBox(height: 6),
+
+    Text(
+      subtitle,
+      textAlign: TextAlign.center,
+      style: AppTextStyles.caption.copyWith(
+        color: selected
+            ? Colors.white70
+            : Colors.grey,
+      ),
+    ),
+
+    const Spacer(),
+
+    Row(
+      children: [
+
+        Icon(
+          Icons.schedule,
+          size: 18,
+          color: selected
+              ? Colors.white
+              : color,
+        ),
+
+        const SizedBox(width: 6),
+
+        Expanded(
+          child: Text(
+            eta,
+            style: AppTextStyles.body.copyWith(
+              color: selected
+                  ? Colors.white
+                  : theme.colorScheme.onSurface,
+            ),
+          ),
+        ),
+      ],
+    ),
+
+    const SizedBox(height: 10),
+
+    Row(
+      children: [
+
+        Icon(
+          Icons.payments,
+          size: 18,
+          color: selected
+              ? Colors.white
+              : Colors.green,
+        ),
+
+        const SizedBox(width: 6),
+
+        Expanded(
+          child: Text(
+            price,
+            style: AppTextStyles.body.copyWith(
+              color: selected
+                  ? Colors.white
+                  : Colors.green,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      ],
+    ),
+
+    const SizedBox(height: 12),
+
+    AnimatedContainer(
+      duration: const Duration(milliseconds: 250),
+      width: double.infinity,
+      height: 42,
+      decoration: BoxDecoration(
+        color: selected
+            ? Colors.white
+            : color.withOpacity(.10),
+        borderRadius: BorderRadius.circular(14),
+      ),
+      child: Center(
+        child: Text(
+          selected ? "تم الاختيار" : "اختر",
+          style: TextStyle(
+            color: selected
+                ? color
+                : color,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    ),
+  ],
+),
       ),
     );
   }
