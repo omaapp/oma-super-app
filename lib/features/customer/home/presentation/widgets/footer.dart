@@ -155,7 +155,7 @@ class _FooterButton extends StatelessWidget {
           CircleAvatar(
             radius: 24,
             backgroundColor:
-                color.withOpacity(.12),
+                color.withValues(alpha: .12),
             child: Icon(
               icon,
               color: color,

@@ -33,7 +33,7 @@ class SearchBox extends StatelessWidget {
                 BorderRadius.circular(22),
             boxShadow: [
               BoxShadow(
-                color: Colors.black.withOpacity(.12),
+                color: Colors.black.withValues(alpha: .12),
                 blurRadius: 20,
                 offset: const Offset(0, 8),
               ),
@@ -65,7 +65,7 @@ class SearchBox extends StatelessWidget {
                 margin: const EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   color: theme.colorScheme.primary
-                      .withOpacity(.12),
+                      .withValues(alpha: .12),
                   shape: BoxShape.circle,
                 ),
                 child: Icon(
@@ -110,7 +110,7 @@ class SearchBox extends StatelessWidget {
                   BorderRadius.circular(20),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black.withOpacity(.10),
+                  color: Colors.black.withValues(alpha: .10),
                   blurRadius: 18,
                 ),
               ],

@@ -48,8 +48,8 @@ class _AnimatedVehicleCardState
           borderRadius: BorderRadius.circular(28),
           boxShadow: [
             BoxShadow(
-              color: widget.color.withOpacity(
-                pressed ? .18 : .28,
+              color: widget.color.withValues(
+                alpha: pressed ? .18 : .28,
               ),
               blurRadius: pressed ? 10 : 22,
               offset: const Offset(0, 10),
@@ -89,7 +89,7 @@ class _AnimatedVehicleCardState
                           vertical: 5,
                         ),
                         decoration: BoxDecoration(
-                          color: widget.color.withOpacity(.12),
+                          color: widget.color.withValues(alpha: .12),
                           borderRadius:
                               BorderRadius.circular(20),
                         ),
@@ -132,7 +132,7 @@ class _AnimatedVehicleCardState
                       width: 82,
                       height: 82,
                       decoration: BoxDecoration(
-                        color: widget.color.withOpacity(.12),
+                        color: widget.color.withValues(alpha: .12),
                         shape: BoxShape.circle,
                       ),
                       child: Icon(
@@ -165,7 +165,7 @@ class _AnimatedVehicleCardState
                           .textTheme
                           .bodyMedium
                           ?.color
-                          ?.withOpacity(.65),
+                          ?.withValues(alpha: .65),
                       height: 1.4,
                     ),
                   ),
@@ -204,7 +204,7 @@ class _AnimatedVehicleCardState
                     ),
                     decoration: BoxDecoration(
                       color:
-                          widget.color.withOpacity(.10),
+                          widget.color.withValues(alpha: .10),
                       borderRadius:
                           BorderRadius.circular(14),
                     ),

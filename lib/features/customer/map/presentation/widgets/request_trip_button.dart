@@ -55,7 +55,7 @@ class RequestTripButton extends StatelessWidget {
             foregroundColor: Colors.white,
 
             disabledBackgroundColor:
-                backgroundColor.withOpacity(.5),
+                backgroundColor.withValues(alpha: .5),
 
             disabledForegroundColor:
                 Colors.white70,

@@ -116,7 +116,7 @@ class _FeatureCard extends StatelessWidget {
 
             radius: 24,
 
-            backgroundColor: color.withOpacity(.12),
+            backgroundColor: color.withValues(alpha: .12),
 
             child: Icon(
               icon,

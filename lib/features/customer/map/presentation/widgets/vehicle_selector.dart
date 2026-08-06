@@ -102,8 +102,8 @@ class _VehicleTile extends StatelessWidget {
           boxShadow: [
             BoxShadow(
               color: selected
-                  ? color.withOpacity(.28)
-                  : Colors.black.withOpacity(.05),
+                  ? color.withValues(alpha: .28)
+                  : Colors.black.withValues(alpha: .05),
               blurRadius: 18,
               offset: const Offset(0, 8),
             ),
@@ -122,7 +122,7 @@ class _VehicleTile extends StatelessWidget {
         decoration: BoxDecoration(
           color: selected
               ? Colors.white24
-              : color.withOpacity(.10),
+              : color.withValues(alpha: .10),
           borderRadius: BorderRadius.circular(20),
         ),
         child: Text(
@@ -146,7 +146,7 @@ class _VehicleTile extends StatelessWidget {
         radius: 34,
         backgroundColor: selected
             ? Colors.white24
-            : color.withOpacity(.12),
+            : color.withValues(alpha: .12),
         child: Icon(
           icon,
           size: 36,
@@ -246,7 +246,7 @@ class _VehicleTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: selected
             ? Colors.white
-            : color.withOpacity(.10),
+            : color.withValues(alpha: .10),
         borderRadius: BorderRadius.circular(14),
       ),
       child: Center(

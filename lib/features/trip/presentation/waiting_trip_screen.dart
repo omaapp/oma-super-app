@@ -59,6 +59,7 @@ class _WaitingTripScreenState
       final status = data["status"];
 
       if (status == "accepted") {
+        if (!mounted) return;
 
         Navigator.pushReplacementNamed(
           context,
@@ -136,7 +137,7 @@ class _WaitingTripScreenState
 
                     color:
                         AppColors.primary
-                            .withOpacity(.12),
+                            .withValues(alpha: .12),
 
                     shape:
                         BoxShape.circle,
@@ -227,7 +228,7 @@ class _WaitingTripScreenState
 
                       color:
                           Colors.black
-                              .withOpacity(.06),
+                              .withValues(alpha: .06),
 
                       blurRadius: 18,
 

@@ -54,7 +54,7 @@ class TripInfoCard extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(.12),
+            color: Colors.black.withValues(alpha: .12),
             blurRadius: 30,
             offset: const Offset(0, -8),
           ),
@@ -107,7 +107,7 @@ class TripInfoCard extends StatelessWidget {
                   ),
                   decoration: BoxDecoration(
                     color: const Color(0xff1565C0)
-                        .withOpacity(.10),
+                        .withValues(alpha: .10),
                     borderRadius: BorderRadius.circular(30),
                   ),
                   child: Text(
@@ -134,7 +134,7 @@ class TripInfoCard extends StatelessWidget {
     width: double.infinity,
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(
-      color: Colors.orange.withOpacity(.08),
+      color: Colors.orange.withValues(alpha: .08),
       borderRadius: BorderRadius.circular(20),
     ),
     child: const Row(
@@ -200,10 +200,10 @@ class TripInfoCard extends StatelessWidget {
     width: double.infinity,
     padding: const EdgeInsets.all(18),
     decoration: BoxDecoration(
-      color: Colors.green.withOpacity(.06),
+      color: Colors.green.withValues(alpha: .06),
       borderRadius: BorderRadius.circular(22),
       border: Border.all(
-        color: Colors.green.withOpacity(.15),
+        color: Colors.green.withValues(alpha: .15),
       ),
     ),
     child: Column(
@@ -314,6 +314,7 @@ SizedBox(
   height: 58,
   child: RequestTripButton(
     onPressed: onRequestTrip,
+    enabled: hasDestination && tripStatus.isEmpty,
   ),
 ),
 ],
@@ -348,17 +349,17 @@ class _StatCard extends StatelessWidget {
         horizontal: 10,
       ),
       decoration: BoxDecoration(
-        color: color.withOpacity(.08),
+        color: color.withValues(alpha: .08),
         borderRadius: BorderRadius.circular(18),
         border: Border.all(
-          color: color.withOpacity(.12),
+          color: color.withValues(alpha: .12),
         ),
       ),
       child: Column(
         children: [
           CircleAvatar(
             radius: 20,
-            backgroundColor: color.withOpacity(.12),
+            backgroundColor: color.withValues(alpha: .12),
             child: Icon(
               icon,
               color: color,
@@ -371,7 +372,7 @@ class _StatCard extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              color: theme.colorScheme.onSurface.withOpacity(.65),
+              color: theme.colorScheme.onSurface.withValues(alpha: .65),
               fontSize: 13,
             ),
           ),

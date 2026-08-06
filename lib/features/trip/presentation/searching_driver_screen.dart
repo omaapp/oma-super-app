@@ -130,7 +130,7 @@ class _SearchingDriverScreenState
                     shape: BoxShape.circle,
                     boxShadow: [
                       BoxShadow(
-                        color: Colors.white.withOpacity(.30),
+                        color: Colors.white.withValues(alpha: .30),
                         blurRadius: 40,
                       ),
                     ],

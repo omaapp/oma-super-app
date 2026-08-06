@@ -5,8 +5,11 @@ import '../../../app/app_routes.dart';
 import '../data/auth_repository.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../user/data/user_service.dart';
+import '../../driver/presentation/driver_registration_screen.dart';
 import '../../driver/presentation/driver_home_screen.dart';
+import '../../driver/presentation/driver_pending_approval_screen.dart';
 import 'select_role_screen.dart';
+import 'customer_profile_setup_screen.dart';
 class OtpScreen extends StatefulWidget {
   final String verificationId;
   final String phone;
@@ -66,6 +69,9 @@ class _OtpScreenState extends State<OtpScreen> {
       final uid = FirebaseAuth.instance.currentUser!.uid;
 
 final doc = await UserService.instance.getUser(uid);
+final isNewUser = !doc.exists;
+
+if (!mounted) return;
 
 String role;
 
@@ -95,11 +101,20 @@ if (role == "driver") {
   Navigator.pushAndRemoveUntil(
     context,
     MaterialPageRoute(
-      builder: (_) => const DriverHomeScreen(),
+      builder: (_) {
+        final status = doc.data()?['approvalStatus'];
+        if (status == 'approved') return const DriverHomeScreen();
+        if (status == 'pending') return const DriverPendingApprovalScreen();
+        return const DriverRegistrationScreen();
+      },
     ),
     (_) => false,
   );
 } else {
+  if (isNewUser) {
+    Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_) => const CustomerProfileSetupScreen()), (_) => false);
+    return;
+  }
   Navigator.pushNamedAndRemoveUntil(
     context,
     AppRoutes.home,

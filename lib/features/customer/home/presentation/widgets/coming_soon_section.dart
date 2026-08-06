@@ -137,7 +137,7 @@ class _ComingCard extends StatelessWidget {
               radius: 28,
 
               backgroundColor:
-                  color.withOpacity(.12),
+                  color.withValues(alpha: .12),
 
               child: Icon(
                 icon,

@@ -39,7 +39,7 @@ class _AnimatedBackgroundState
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: controller,
-      builder: (_, __) {
+      builder: (_, _) {
         return CustomPaint(
           painter: _BackgroundPainter(
             controller.value,
@@ -60,7 +60,7 @@ class _BackgroundPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final paint = Paint()
       ..color =
-          const Color(0xff1565C0).withOpacity(.05);
+          const Color(0xff1565C0).withValues(alpha: .05);
 
     for (int i = 0; i < 18; i++) {
       final x = (size.width / 18) * i;
@@ -82,7 +82,7 @@ class _BackgroundPainter extends CustomPainter {
 
     final paint2 = Paint()
       ..color =
-          Colors.blue.withOpacity(.03);
+          Colors.blue.withValues(alpha: .03);
 
     for (int i = 0; i < 10; i++) {
       canvas.drawCircle(

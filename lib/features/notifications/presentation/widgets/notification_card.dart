@@ -113,7 +113,7 @@ class NotificationCard extends StatelessWidget {
               CircleAvatar(
                 radius: 26,
                 backgroundColor:
-                    _color().withOpacity(.12),
+                    _color().withValues(alpha: .12),
                 child: Icon(
                   _icon(),
                   color: _color(),

@@ -112,7 +112,7 @@ class _NewsCard extends StatelessWidget {
               radius: 30,
 
               backgroundColor:
-                  color.withOpacity(.12),
+                  color.withValues(alpha: .12),
 
               child: Icon(
                 icon,

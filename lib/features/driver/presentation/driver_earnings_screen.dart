@@ -102,7 +102,7 @@ class DriverEarningsScreen extends StatelessWidget {
                   const EdgeInsets.all(18),
 
               decoration: BoxDecoration(
-                color: color.withOpacity(.08),
+                color: color.withValues(alpha: .08),
                 borderRadius:
                     BorderRadius.circular(18),
               ),

@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../../core/models/app_user.dart';
 import '../../../core/services/firebase_auth_service.dart';

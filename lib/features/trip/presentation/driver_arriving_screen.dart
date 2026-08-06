@@ -313,7 +313,7 @@ class _DriverArrivingScreenState
                 borderRadius: BorderRadius.circular(22),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(.12),
+                    color: Colors.black.withValues(alpha: .12),
                     blurRadius: 18,
                     offset: const Offset(0, 6),
                   ),
@@ -365,7 +365,7 @@ class _DriverArrivingScreenState
                       vertical: 10,
                     ),
                     decoration: BoxDecoration(
-                      color: Colors.green.withOpacity(.12),
+                      color: Colors.green.withValues(alpha: .12),
                       borderRadius:
                           BorderRadius.circular(20),
                     ),
@@ -399,7 +399,7 @@ class _DriverArrivingScreenState
                 ),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(.15),
+                    color: Colors.black.withValues(alpha: .15),
                     blurRadius: 30,
                     offset: const Offset(0, -10),
                   ),
@@ -490,7 +490,7 @@ class _DriverArrivingScreenState
                             vertical: 10,
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.blue.withOpacity(.1),
+                            color: Colors.blue.withValues(alpha: .1),
                             borderRadius:
                                 BorderRadius.circular(18),
                           ),
@@ -532,7 +532,7 @@ class _DriverArrivingScreenState
                                 const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               color: Colors.blue
-                                  .withOpacity(.08),
+                                  .withValues(alpha: .08),
                               borderRadius:
                                   BorderRadius.circular(
                                       18),
@@ -576,7 +576,7 @@ class _DriverArrivingScreenState
                                 const EdgeInsets.all(16),
                             decoration: BoxDecoration(
                               color: Colors.green
-                                  .withOpacity(.08),
+                                  .withValues(alpha: .08),
                               borderRadius:
                                   BorderRadius.circular(
                                       18),
